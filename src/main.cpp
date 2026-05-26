@@ -15,5 +15,19 @@ void setup(){
 void loop(){
   //Periodically feed the dog
   esp_task_wdt_reset();
+  //Trigger conditon:Listen for specific char
+  if (Serial.available())
+  {
+    char c=Serial.read();
+    if (c=='X'||c=='x')
+    {
+      Serial.println("\n[ERROR] Deadlock Triggered! Watchdog will bite in 5 seconds...");
+      //Deliberately create system deadlock
+      while (1)
+      {
+        
+      }
+    }
+  }
   delay(100);
 }
