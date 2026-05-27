@@ -1,11 +1,16 @@
 #include <Arduino.h>
 #include <esp_task_wdt.h>
+#include <Preferences.h>
 
 #define WDT_TIMEOUT 5  
 
+Preferences preferences;
+
 void setup(){
   Serial.begin(115200);
-  Serial.println("\n--- [Day 1] WDT Init ---");
+  Serial.println("\n--- [Day 3] NVS Initialization ---");
+  preferences.begin("my-app",false);
+  Serial.println("[NVS] Preferences library initialized");
   esp_task_wdt_init(WDT_TIMEOUT,true);  //Initialize WDT
   //Add current task to WDT
   esp_task_wdt_add(NULL);
