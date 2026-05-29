@@ -15,6 +15,8 @@ void setup(){
   Serial.println("\n--- [Day 3] NVS Initialization ---");
   preferences.begin("my-app",false);
   Serial.println("[NVS] Preferences library initialized");
+  currentMode=preferences.getInt("let_mode",0);
+  Serial.printf("[NVS] Recovered LED Mode: %d\n", currentMode);
   esp_task_wdt_init(WDT_TIMEOUT,true);  //Initialize WDT
   //Add current task to WDT
   esp_task_wdt_add(NULL);
